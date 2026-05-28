@@ -1,0 +1,63 @@
+search:
+  titles:
+    - "Machine Learning Engineer"
+    - "Senior Machine Learning Engineer"
+    - "Staff Machine Learning Engineer"
+    - "ML Engineer"
+    - "AI Engineer"
+  keywords:
+    - "machine learning"
+    - "deep learning"
+    - "pytorch"
+    - "LLM"
+    - "NLP"
+    - "MLOps"
+    - "generative AI"
+  negative_keywords:
+    - "junior"
+    - "intern"
+    - "entry level"
+    - "new grad"
+  locations:
+    - "Remote"
+    - "San Francisco, CA"
+    - "New York, NY"
+  remote_ok: true
+  min_years_experience: 5
+  max_years_experience: 15
+
+scanner:
+  enabled:
+    - linkedin
+    - indeed
+    - glassdoor
+    - greenhouse
+    - lever
+    - hn_hiring
+  results_per_search: 50
+  hours_old: 72
+
+pipeline:
+  relevance_threshold: 0.6
+  max_applications_per_run: 200
+  delay_between_applications_seconds: 30
+  dry_run: true   # set to false when ready to actually apply
+
+applier:
+  user_profile:
+    first_name: "CHANGE_ME"
+    last_name: "CHANGE_ME"
+    email: "CHANGE_ME@example.com"
+    phone: "+1-000-000-0000"
+    linkedin_url: "https://linkedin.com/in/CHANGE_ME"
+    website: ""
+    github: ""
+    current_company: ""
+    current_title: ""
+
+notification:
+  email_to: "CHANGE_ME@example.com"
+  email_from: "job-alert@example.com"
+  send_on_new_matches: true
+  send_on_application: true
+  send_on_error: true

@@ -1,0 +1,69 @@
+name: Apply to Jobs
+
+on:
+  schedule:
+    - cron: '0 14 * * 1-5'  # 2 PM UTC, weekdays only
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Install Playwright browsers
+        run: playwright install chromium --with-deps
+
+      - name: Install WeasyPrint system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev libcairo2
+
+      - name: Download database artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: jobs-database
+          path: data/
+
+      - name: Run applications
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          GREENHOUSE_API_KEY: ${{ secrets.GREENHOUSE_API_KEY }}
+          LEVER_API_KEY: ${{ secrets.LEVER_API_KEY }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
+        run: python scripts/run_apply.py
+
+      - name: Upload database artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobs-database
+          path: data/jobs.db
+          retention-days: 90
+          overwrite: true
+
+      - name: Upload tailored documents
+        uses: actions/upload-artifact@v4
+        with:
+          name: applications-${{ github.run_id }}
+          path: output/
+          retention-days: 30
+          if-no-files-found: ignore

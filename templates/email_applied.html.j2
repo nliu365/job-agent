@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #333; max-width: 600px; margin: 0 auto; }
+        h1 { color: #1a1a1a; font-size: 20px; }
+        h2 { font-size: 16px; margin-top: 20px; }
+        .result { padding: 10px; margin-bottom: 8px; border-radius: 6px; }
+        .success { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        .failure { background: #fbe9e7; border-left: 4px solid #f44336; }
+        .job-title { font-weight: 600; }
+        .job-company { color: #555; font-size: 14px; }
+        .error { color: #c62828; font-size: 13px; margin-top: 4px; }
+        .footer { margin-top: 24px; font-size: 12px; color: #999; border-top: 1px solid #eee; padding-top: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Application Summary</h1>
+    <p>{{ applied_count }} applied, {{ failed_count }} failed</p>
+
+    {% if applied %}
+    <h2>Successfully Applied ({{ applied_count }})</h2>
+    {% for item in applied %}
+    <div class="result success">
+        <div class="job-title">{{ item.job.title }}</div>
+        <div class="job-company">{{ item.job.company }} &bull; {{ item.job.location }}</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if failed %}
+    <h2>Failed ({{ failed_count }})</h2>
+    {% for item in failed %}
+    <div class="result failure">
+        <div class="job-title">{{ item.job.title }}</div>
+        <div class="job-company">{{ item.job.company }}</div>
+        <div class="error">{{ item.error }}</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="footer">
+        <p>This is an automated summary from your job-alert pipeline.</p>
+    </div>
+</body>
+</html>

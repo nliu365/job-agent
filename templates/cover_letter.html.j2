@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cover Letter - {{ name }}</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #222;
+        }
+        .header {
+            margin-bottom: 24pt;
+        }
+        .header .name {
+            font-size: 14pt;
+            font-weight: 700;
+        }
+        .header .contact {
+            font-size: 9.5pt;
+            color: #555;
+            margin-top: 4pt;
+        }
+        .body {
+            white-space: pre-wrap;
+        }
+        p {
+            margin-bottom: 12pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">{{ name }}</div>
+        <div class="contact">
+            {{ email }}{% if phone %} &bull; {{ phone }}{% endif %}
+            {% if linkedin_url %} &bull; <a href="{{ linkedin_url }}">LinkedIn</a>{% endif %}
+        </div>
+    </div>
+    <div class="body">
+        {% for paragraph in text.split('\n\n') %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.name }} - Resume</title>
+    <link rel="stylesheet" href="resume.css">
+</head>
+<body>
+    <header>
+        <h1>{{ resume.name }}</h1>
+        <div class="contact">
+            {% if resume.email %}<span>{{ resume.email }}</span>{% endif %}
+            {% if resume.phone %}<span>{{ resume.phone }}</span>{% endif %}
+            {% if resume.location %}<span>{{ resume.location }}</span>{% endif %}
+            {% if resume.linkedin_url %}<span><a href="{{ resume.linkedin_url }}">LinkedIn</a></span>{% endif %}
+        </div>
+    </header>
+
+    {% if resume.summary %}
+    <section class="summary">
+        <h2>Summary</h2>
+        <p>{{ resume.summary }}</p>
+    </section>
+    {% endif %}
+
+    {% if resume.experience %}
+    <section class="experience">
+        <h2>Experience</h2>
+        {% for exp in resume.experience %}
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">
+                    <strong>{{ exp.title }}</strong> &mdash; {{ exp.company }}
+                </div>
+                <div class="entry-dates">
+                    {{ exp.start_date }}{% if exp.end_date %} &ndash; {{ exp.end_date }}{% endif %}
+                </div>
+            </div>
+            {% if exp.bullets %}
+            <ul>
+                {% for bullet in exp.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if resume.education %}
+    <section class="education">
+        <h2>Education</h2>
+        {% for edu in resume.education %}
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">
+                    <strong>{{ edu.degree }}{% if edu.field %} in {{ edu.field }}{% endif %}</strong> &mdash; {{ edu.school }}
+                </div>
+                <div class="entry-dates">
+                    {{ edu.start_date }}{% if edu.end_date %} &ndash; {{ edu.end_date }}{% endif %}
+                </div>
+            </div>
+            {% if edu.gpa %}<p class="gpa">GPA: {{ edu.gpa }}</p>{% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if resume.skills %}
+    <section class="skills">
+        <h2>Skills</h2>
+        <p>{{ resume.skills | join(', ') }}</p>
+    </section>
+    {% endif %}
+
+    {% if resume.certifications %}
+    <section class="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            {% for cert in resume.certifications %}
+            <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    {% if resume.publications %}
+    <section class="publications">
+        <h2>Publications</h2>
+        <ul>
+            {% for pub in resume.publications %}
+            <li>{{ pub }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+</body>
+</html>

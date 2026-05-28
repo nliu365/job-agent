@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+
+# SQLite database (persisted via GitHub Actions artifacts)
+data/jobs.db
+
+# Output files (tailored resumes, cover letters, screenshots)
+output/
+
+# Personal data — keep out of public repo
+data/config.yml
+data/resume.json
+data/*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

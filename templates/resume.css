@@ -1,0 +1,113 @@
+@page {
+    size: letter;
+    margin: 0.6in 0.7in;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #222;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 12pt;
+    border-bottom: 1.5pt solid #333;
+    padding-bottom: 8pt;
+}
+
+header h1 {
+    font-size: 18pt;
+    font-weight: 700;
+    letter-spacing: 0.5pt;
+    margin-bottom: 4pt;
+}
+
+.contact {
+    font-size: 9pt;
+    color: #555;
+}
+
+.contact span {
+    margin: 0 6pt;
+}
+
+.contact span:not(:last-child)::after {
+    content: '|';
+    margin-left: 12pt;
+    color: #999;
+}
+
+.contact a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+section {
+    margin-bottom: 10pt;
+}
+
+h2 {
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    border-bottom: 0.5pt solid #ccc;
+    padding-bottom: 2pt;
+    margin-bottom: 6pt;
+    color: #333;
+}
+
+.summary p {
+    font-size: 9.5pt;
+    color: #444;
+}
+
+.entry {
+    margin-bottom: 8pt;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3pt;
+}
+
+.entry-title {
+    font-size: 10pt;
+}
+
+.entry-dates {
+    font-size: 9pt;
+    color: #666;
+    white-space: nowrap;
+}
+
+ul {
+    margin-left: 16pt;
+    margin-top: 2pt;
+}
+
+li {
+    font-size: 9.5pt;
+    margin-bottom: 2pt;
+    line-height: 1.35;
+}
+
+.skills p {
+    font-size: 9.5pt;
+}
+
+.gpa {
+    font-size: 9pt;
+    color: #666;
+    margin-top: 2pt;
+}

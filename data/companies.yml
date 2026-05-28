@@ -1,0 +1,23 @@
+# Greenhouse company boards to scan
+# Find board tokens at: https://boards.greenhouse.io/{board_token}
+greenhouse:
+  - name: "Anthropic"
+    board_token: "anthropic"
+  - name: "Stripe"
+    board_token: "stripe"
+  - name: "Databricks"
+    board_token: "databricks"
+  - name: "Scale AI"
+    board_token: "scaleai"
+  - name: "Anduril"
+    board_token: "andurilindustries"
+  - name: "Figma"
+    board_token: "figma"
+
+# Lever company postings to scan
+# Find site slugs at: https://jobs.lever.co/{site}
+lever:
+  - name: "Notion"
+    site: "notion"
+  - name: "Discord"
+    site: "discord"
